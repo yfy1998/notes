@@ -231,6 +231,33 @@ function throttle(fn,delay){
     }
 }
 
+//数据扁平化
+function flat(arr,n){
+    let res=arr;
+    for(let i=0;i<n;i++){
+      res=[].concat(...res);
+    }
+    return res;
+  }
+  
+console.log(flat([1,[2,3],4,[5,[6]]],1));
+
+//每秒输出数组中一个数
+let arr=[1,2,3,4,5];
+function printarr(arr){
+    let i=0;
+    let t=setInterval(function(){
+        console.log(arr[i]);
+        i++;
+        if(i>=arr.length){
+            clearInterval(t);
+        }
+    },1000)
+}
+printarr(arr);
+
+
+
 
 
 
