@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+
+
+
+<html lang="en">
+
+
+
+<head>
+
+
+
+    <meta charset="UTF-8">
+
+
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+
+
+    <title>TO DO</title>
+
+
+
+    <style>
+        * {
+
+
+
+            margin: 0;
+
+
+
+            padding: 0;
+
+
+
+        }
+
+
+
+        body {
+
+
+
+            text-align: center;
+
+
+
+        }
+
+
+
+        .content {
+
+
+
+            margin-top: 20px;
+
+
+
+        }
+
+
+
+        .content input {
+
+
+
+            width: 200px;
+
+
+
+            height: 32px;
+
+
+
+        }
+
+
+
+        .list-container {
+
+
+
+            margin-top: 20px;
+
+
+
+            display: flex;
+
+
+
+            justify-content: center;
+
+
+
+        }
+
+
+
+        ul {
+
+
+
+            list-style: none;
+
+
+
+            border: 1px solid rebeccapurple;
+
+
+
+            width: 200px;
+
+
+
+            /* min-height: 200px;
+
+
+
+            max-height: 200px; */
+
+            height: 200px;
+
+            overflow: auto;
+
+
+
+        }
+
+
+
+        ul>li {
+
+
+
+            text-align: left;
+
+
+
+            margin: 2px;
+
+
+
+            padding: 5px;
+
+
+
+            box-sizing: content-box;
+
+
+
+            border-bottom: 1px solid rgba(0, 0, 0, 0);
+
+
+
+        }
+
+
+
+        ul>li:hover {
+
+
+
+            border-bottom: 1px solid rebeccapurple;
+
+
+
+        }
+
+
+
+        ul>li>span.del {
+
+
+
+            font-size: 1.4rem;
+
+
+
+            line-height: 1.4rem;
+
+
+
+            float: right;
+
+
+
+            cursor: pointer;
+
+
+
+        }
+
+
+
+        ul>li>span:hover {
+
+
+
+            zoom: 1.1;
+
+
+
+        }
+    </style>
+
+
+
+</head>
+
+
+
+<body>
+    <h1>todos</h1>
+    <div class="content">
+        <input id="input">
+        <div class="list-container">
+            <ul id="list">
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        var inputElement = document.getElementById("input");
+        var listElement = document.getElementById("list");
+        inputElement.addEventListener('keydown', (ev) => {
+            if (ev.keyCode === 13) {
+                if (inputElement.value === '') return;
+                addLi(listElement, inputElement.value);
+                inputElement.value = '';
+            } else {
+                setTimeout(() => {
+                    search(inputElement.value);
+                }, 10)
+            }
+
+        });
+
+
+
+        function addLi(_parentNode, _text) {
+
+            var liElement = document.createElement('li');
+
+            _parentNode.appendChild(liElement);
+
+            //通过innerHTML，通过字符串构建HTMLElement
+
+            liElement.innerHTML =
+
+                `<span class="list-content" data-record="${_text}">${_text}</span><span class="del">×</span>`;
+
+            bindClickRemove(liElement);
+ 
+        }
+
+
+
+        function bindClickRemove(_elem) {
+
+            console.log(_elem.children);
+
+            _elem.children[1].addEventListener('click', () => {
+
+                _elem.remove();
+
+            });
+
+        }
+
+
+
+        function search(_str) {
+
+            var contents = document.getElementsByClassName('list-content');
+
+            var tempStr;
+
+            for (let i = 0; i < contents.length; i++) {
+
+                tempStr = contents[i].dataset.record;
+
+                var reger = new RegExp("(" + _str + ")", "gm");
+
+                // var reslut = tempStr.replace(reger, "<font color='red'>"+_str+"</font>");
+                var reslut = contents[i].innerText.replace(reger, "<font color='red'>"+_str+"</font>");
+                contents[i].innerHTML = reslut;
+
+            }
+
+        }
+
+    </script>
+
+
+
+</body>
+
+
+
+</html>

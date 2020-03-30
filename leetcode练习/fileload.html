@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>图片上传</title>
+<style>
+*{
+margin: 0;
+padding: 0;
+}
+ul{
+margin: 20px;
+}
+ul li{
+list-style-type: none;
+height: 110px;
+width: 110px;
+border: 1px solid #ccc;
+float: left;
+}
+ul li img{
+width: 100%;
+height: 100%;
+}
+#test{
+display: none;
+}
+#main{
+width: 668px;
+height: 608px;
+border-radius: 5px;
+border: 1px solid #ccc;
+position: absolute;
+left: 50%;
+top:50%;
+margin-left: -334px;
+margin-top:-304px;
+}
+.container{
+vertical-align:center;
+}
+.nav{
+z-index: -1;
+border-bottom: 1px solid black;
+height: 50px;
+}
+.nav span{
+color: red;
+border-bottom: 1px solid red;
+z-index: 1;
+height: 100%;
+display: block;
+margin: 0;
+line-height: 50px;
+float: left;
+}
+.close{
+margin-top:10px;
+display: block;
+float: right;
+position: relative;
+width: 30px;
+height: 30px;
+}
+.close::before,
+.close::after{
+content: '';
+background: gray;
+position: absolute;
+width: 30px;
+height: 1px;
+top:50%;
+}
+.close::before{
+transform: rotate(45deg);
+-webkit-transform: rotate(45deg);
+}
+.close::after{
+transform: rotate(-45deg);
+-webkit-transform: rotate(-45deg);
+}
+.footer{
+text-align: center;
+padding: 200px;
+}
+button{
+border-radius: 3px;
+border: 1px solid #ccc;
+height: 40px;
+width: 80px;
+cursor: pointer;
+}
+#file{
+display: none;
+}
+#submit{
+background: #EA4246;
+}
+</style>
+</head>
+<body>
+<div id="main">
+<div class="nav">
+<span>上传图片</span>
+<a href="#" class="close"></a>
+<!-- <div style="clear:both"></div> -->
+</div>
+<ul>
+</ul>
+<!-- <div style="clear:both"></div> -->
+<form>
+<input type="file" id="file">
+</form>
+<div class="footer">
+<button id="submit">上传</button>
+<button id="cancel">取消</button>
+</div>
+</div>
+<script>
+var submit=document.getElementById('submit');
+var ul=document.getElementsByTagName('ul')[0];
+submit.onclick=function(){
+document.getElementById('file').click();
+}
+document.getElementById("file").onchange=function(){
+var file=this.files[0];
+var reader=new FileReader();
+reader.onload=function(){
+var li=document.createElement('li');
+var src=this.result;
+var img=document.createElement('img');
+img.src=src;
+li.appendChild(img);
+ul.appendChild(li);
+var url="https://mp.toutiao.com/profile_v2/";
+var xhr=new XMLHttpRequest();
+xhr.open("post",url,true);
+xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+xhr.send(src);
+xhr.onreadystatechange=function(){
+if(xhr.readyState==4){
+if(xhr.status==200){
+alert("上传成功!");
+}
+else{
+alert("上传失败!");
+}
+}
+}
+}
+reader.readAsDataURL(file);
+}
+</script>
+</body>
+</html>
