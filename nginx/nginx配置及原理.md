@@ -55,15 +55,15 @@ http {
 
 查看nginx进程，如下图（一个master主进程，一个worker进程）
 
-![image-20200227152529019](C:\Users\Administrator\Desktop\notes\nginx\nginx配置及原理.assets\image-20200227152529019.png)
+![image-20200227152529019](.\nginx配置及原理.assets\image-20200227152529019.png)
 
 默认配置woker进程数为一个
 
-<img src="C:\Users\Administrator\Desktop\notes\nginx\nginx配置及原理.assets\image-20200227152550821.png" alt="image-20200227152550821" style="zoom:33%;" />
+<img src=".\nginx配置及原理.assets\image-20200227152550821.png" alt="image-20200227152550821" style="zoom:33%;" />
 
 启动Nginx后，其实就是在8080端口启动了Socket服务进行监听，如下图所示，Nginx涉及Master进程和Worker进程。
 
-<img src="C:\Users\Administrator\Desktop\notes\nginx\nginx配置及原理.assets\image-20200227152729533.png" alt="image-20200227152729533" style="zoom:50%;" />
+<img src=".\nginx配置及原理.assets\image-20200227152729533.png" alt="image-20200227152729533" style="zoom:50%;" />
 
 **master主进程作用**
 

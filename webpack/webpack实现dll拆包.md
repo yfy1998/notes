@@ -8,17 +8,17 @@
 
 查看效果需要勾选Disable cache,避免缓存对结果的影响
 
-![image-20200227172448495](C:\Users\Administrator\Desktop\notes\webpack\webpack实现dll拆包.assets\image-20200227172448495.png)
+![image-20200227172448495](.\webpack实现dll拆包.assets\image-20200227172448495.png)
 
 拆包前：
 
-![image-20200227172613756](C:\Users\Administrator\Desktop\notes\webpack\webpack实现dll拆包.assets\image-20200227172613756.png)
+![image-20200227172613756](.\webpack实现dll拆包.assets\image-20200227172613756.png)
 
 main.js **5.9MB**
 
 拆包后：
 
-![image-20200227173641244](C:\Users\Administrator\Desktop\notes\webpack\webpack实现dll拆包.assets\image-20200227173641244.png)
+![image-20200227173641244](.\webpack实现dll拆包.assets\image-20200227173641244.png)
 
 main.chunk.js **1.1MB** + vendors.dll.js **600KB** 
 
@@ -60,7 +60,7 @@ main.chunk.js **1.1MB** + vendors.dll.js **600KB**
 
    得到dll文件：
 
-   <img src="C:\Users\Administrator\Desktop\notes\webpack\webpack实现dll拆包.assets\image-20200227175419848.png" alt="image-20200227175419848" style="zoom:33%;" />
+   <img src=".\webpack实现dll拆包.assets\image-20200227175419848.png" alt="image-20200227175419848" style="zoom:33%;" />
 
 3. dll中的js文件在index.html中用<scrpit>标签引用
 
@@ -76,5 +76,5 @@ main.chunk.js **1.1MB** + vendors.dll.js **600KB**
 
    output中加入chunkFilename
 
-   ![image-20200227181648639](C:\Users\Administrator\Desktop\notes\webpack\webpack实现dll拆包.assets\image-20200227181648639.png)
+   ![image-20200227181648639](.\webpack实现dll拆包.assets\image-20200227181648639.png)
 
